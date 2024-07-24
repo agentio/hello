@@ -39,9 +39,9 @@ import (
 	"log"
 	"net"
 
+	"github.com/terminate-me/hello/helloworld"
+	pb "github.com/terminate-me/hello/helloworld"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/examples/helloworld/helloworld"
-	pb "google.golang.org/grpc/examples/helloworld/helloworld"
 	"google.golang.org/grpc/reflection"
 )
 

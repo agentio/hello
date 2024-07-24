@@ -1,4 +1,4 @@
-module github.com/agent-kit/golang-samples-endpoints-getting-started-grpc
+module github.com/terminate-me/hello
 
 go 1.22.5
 
