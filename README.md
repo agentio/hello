@@ -1,4 +1,6 @@
-# Google Cloud Endpoints Sample for Go using gRPC
+# Sample for Go using gRPC
+
+This sample is derived from the [Google Cloud Endpoints Sample for Go using gRPC](https://github.com/GoogleCloudPlatform/golang-samples/tree/main/endpoints/getting-started-grpc).
 
 This sample demonstrates how to use Google Cloud Endpoints using Go and gRPC.
 
