@@ -40,7 +40,7 @@ import (
 	"io/ioutil"
 	"log"
 
-	pb "github.com/terminate-me/hello/helloworld"
+	pb "github.com/agent-kit/hello/helloworld"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"

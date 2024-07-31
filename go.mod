@@ -1,4 +1,4 @@
-module github.com/terminate-me/hello
+module github.com/agent-kit/hello
 
 go 1.22.5
 
