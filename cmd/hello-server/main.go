@@ -46,7 +46,7 @@ import (
 )
 
 var (
-	addr = flag.String("addr", ":50051", "Network host:port to listen on for gRPC connections.")
+	addr = flag.String("addr", ":8080", "Network host:port to listen on for gRPC connections.")
 )
 
 // server is used to implement helloworld.GreeterServer.
