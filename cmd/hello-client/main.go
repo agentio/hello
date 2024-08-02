@@ -25,31 +25,39 @@ var (
 	token    = flag.String("token", "", "Authentication token.")
 	keyfile  = flag.String("keyfile", "", "Path to a Google service account key file.")
 	audience = flag.String("audience", "", "Audience.")
+	insecure = flag.Bool("insecure", false, "Insecure connections.")
 )
 
 func main() {
 	flag.Parse()
 
 	// Set up a connection to the server.
-	//conn, err := grpc.Dial(*addr, grpc.WithInsecure())
+	var conn *grpc.ClientConn
+	var err error
+	if *insecure {
+		conn, err = grpc.Dial(*addr, grpc.WithInsecure())
+		if err != nil {
+			log.Fatalf("did not connect: %v", err)
+		}
+	} else {
+		proxyCA := "roots.pem" // CA cert that signed the proxy
+		f, err := os.ReadFile(proxyCA)
+		if err != nil {
+			log.Fatalf("%v", err)
+		}
+		p := x509.NewCertPool()
+		p.AppendCertsFromPEM(f)
+		tlsConfig := &tls.Config{
+			RootCAs:            p,
+			InsecureSkipVerify: true,
+		}
 
-	proxyCA := "roots.pem" // CA cert that signed the proxy
-	f, err := os.ReadFile(proxyCA)
-	if err != nil {
-		log.Fatalf("%v", err)
-	}
-	p := x509.NewCertPool()
-	p.AppendCertsFromPEM(f)
-	tlsConfig := &tls.Config{
-		RootCAs:            p,
-		InsecureSkipVerify: true,
-	}
-
-	conn, err := grpc.Dial("hello.endpoints.agent-kit.cloud.goog:443", grpc.WithTransportCredentials(credentials.NewTLS(tlsConfig)))
-	//conn, err := grpc.Dial(os.Getenv("hello.endpoints.agent-kit.cloud.goog:443"), grpc.WithTransportCredentials(credentials.NewTLS(&tls.Config{InsecureSkipVerify: false})))
-	//conn, err := grpc.Dial("hello.endpoints.agent-kit.cloud.goog:443", grpc.WithTransportCredentials(insecure.NewCredentials()))
-	if err != nil {
-		log.Fatalf("did not connect: %v", err)
+		conn, err = grpc.Dial("hello.endpoints.agent-kit.cloud.goog:443", grpc.WithTransportCredentials(credentials.NewTLS(tlsConfig)))
+		//conn, err := grpc.Dial(os.Getenv("hello.endpoints.agent-kit.cloud.goog:443"), grpc.WithTransportCredentials(credentials.NewTLS(&tls.Config{InsecureSkipVerify: false})))
+		//conn, err := grpc.Dial("hello.endpoints.agent-kit.cloud.goog:443", grpc.WithTransportCredentials(insecure.NewCredentials()))
+		if err != nil {
+			log.Fatalf("did not connect: %v", err)
+		}
 	}
 	defer conn.Close()
 	c := pb.NewGreeterClient(conn)

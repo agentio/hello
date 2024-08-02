@@ -1,12 +1,13 @@
 type: google.api.Service
 config_version: 3
-
 name: hello.endpoints.agent-kit.cloud.goog
-
 title: Hello API
 apis:
 - name: helloworld.Greeter
-
 endpoints:
 - name: hello.endpoints.agent-kit.cloud.goog
   target: "172.125.77.209"
+backend:
+  rules:
+    - selector: "*"
+      address: grpc://127.0.0.1:8080
