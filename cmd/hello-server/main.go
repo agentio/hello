@@ -39,8 +39,8 @@ import (
 	"log"
 	"net"
 
-	"github.com/agent-kit/hello/helloworld"
-	pb "github.com/agent-kit/hello/helloworld"
+	"github.com/agentio/hello/helloworld"
+	pb "github.com/agentio/hello/helloworld"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )

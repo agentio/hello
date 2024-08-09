@@ -10,7 +10,7 @@ import (
 	"log"
 	"os"
 
-	pb "github.com/agent-kit/hello/helloworld"
+	pb "github.com/agentio/hello/helloworld"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
@@ -52,9 +52,9 @@ func main() {
 			InsecureSkipVerify: true,
 		}
 
-		conn, err = grpc.Dial("hello.endpoints.agent-kit.cloud.goog:443", grpc.WithTransportCredentials(credentials.NewTLS(tlsConfig)))
-		//conn, err := grpc.Dial(os.Getenv("hello.endpoints.agent-kit.cloud.goog:443"), grpc.WithTransportCredentials(credentials.NewTLS(&tls.Config{InsecureSkipVerify: false})))
-		//conn, err := grpc.Dial("hello.endpoints.agent-kit.cloud.goog:443", grpc.WithTransportCredentials(insecure.NewCredentials()))
+		conn, err = grpc.Dial("hello.endpoints.agentio.cloud.goog:443", grpc.WithTransportCredentials(credentials.NewTLS(tlsConfig)))
+		//conn, err := grpc.Dial(os.Getenv("hello.endpoints.agentio.cloud.goog:443"), grpc.WithTransportCredentials(credentials.NewTLS(&tls.Config{InsecureSkipVerify: false})))
+		//conn, err := grpc.Dial("hello.endpoints.agentio.cloud.goog:443", grpc.WithTransportCredentials(insecure.NewCredentials()))
 		if err != nil {
 			log.Fatalf("did not connect: %v", err)
 		}

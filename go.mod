@@ -1,4 +1,4 @@
-module github.com/agent-kit/hello
+module github.com/agentio/hello
 
 go 1.22.5
 
