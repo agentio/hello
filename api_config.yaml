@@ -1,7 +1,7 @@
 type: google.api.Service
 config_version: 3
 name: hello.endpoints.agentio.cloud.goog
-title: Hello API
+title: Hello Endpoints Example API
 apis:
 - name: helloworld.Greeter
 endpoints:
@@ -11,3 +11,5 @@ backend:
   rules:
     - selector: "*"
       address: grpc://127.0.0.1:8080
+      allow_unregistered_calls: true
+

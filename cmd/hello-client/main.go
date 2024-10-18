@@ -52,7 +52,7 @@ func main() {
 			InsecureSkipVerify: true,
 		}
 
-		conn, err = grpc.Dial("hello.endpoints.agentio.cloud.goog:443", grpc.WithTransportCredentials(credentials.NewTLS(tlsConfig)))
+		conn, err = grpc.Dial(*addr, grpc.WithTransportCredentials(credentials.NewTLS(tlsConfig)))
 		//conn, err := grpc.Dial(os.Getenv("hello.endpoints.agentio.cloud.goog:443"), grpc.WithTransportCredentials(credentials.NewTLS(&tls.Config{InsecureSkipVerify: false})))
 		//conn, err := grpc.Dial("hello.endpoints.agentio.cloud.goog:443", grpc.WithTransportCredentials(insecure.NewCredentials()))
 		if err != nil {
